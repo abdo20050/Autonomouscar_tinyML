@@ -92,9 +92,9 @@ class XboxController(object):
                     msg = bytearray([_type,val])
                     ser.write(msg)
                 elif event.code == 'BTN_NORTH':
-                    self.Y = event.state #previously switched with X
+                    self.X = event.state #previously switched with X
                 elif event.code == 'BTN_WEST':
-                    self.X = event.state #previously switched with Y
+                    self.Y = event.state #previously switched with Y
                     self.customfunc()
                 elif event.code == 'BTN_EAST':
                     self.B = event.state
