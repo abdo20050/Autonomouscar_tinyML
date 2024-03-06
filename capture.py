@@ -40,7 +40,7 @@ def getState():
         statesCount[state]+=1
         return state
     
-isPaused = False
+isPaused = True
 preview_config = picam2.create_preview_configuration(main={"size": (600, 600)})
 picam2.configure(preview_config)
 
@@ -53,7 +53,8 @@ i = 0
 print("press A to start!")
 while(not joy.A): pass
 print("Go!")
-
+time.sleep(0.5)
+print("Press Y to start dataRecording")
 while 1:
     if joy.Start:
         break
@@ -62,7 +63,7 @@ while 1:
             print("pause!")
             isPaused = True
         else:
-            print("continue!")
+            print("Start Recording!")
             isPaused = False
         while(joy.Y): pass
     if not isPaused:    

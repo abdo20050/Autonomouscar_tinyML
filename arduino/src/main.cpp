@@ -35,6 +35,15 @@ void setup() {
   // initialize digital pin LED_BUILTIN as an output.
   pinMode(LED_BUILTIN, OUTPUT);
   Serial.println("hello Serial!");
+  // Set the motor control pins as outputs
+  pinMode(LEFT_MOTOR_PIN1, OUTPUT);
+  pinMode(LEFT_MOTOR_PIN2, OUTPUT);
+  pinMode(RIGHT_MOTOR_PIN1, OUTPUT);
+  pinMode(RIGHT_MOTOR_PIN2, OUTPUT);
+
+  // Set the motor speed control pins as outputs
+  pinMode(LEFT_MOTOR_SPEED_PIN, OUTPUT);
+  pinMode(RIGHT_MOTOR_SPEED_PIN, OUTPUT);
 }
 
 // the loop function runs over and over again forever
