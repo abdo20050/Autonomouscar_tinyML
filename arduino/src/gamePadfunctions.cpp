@@ -1,8 +1,34 @@
 #include "main.h"
 #include "motorFunction.h"
+void(* resetFunc) (void) = 0; //declare reset function @ address 0
 void useGameData(char type, int value) {
   yield();
   switch (type) {
+    case 'R':
+      stopMotors();
+      resetFunc();
+      delay(10);
+      break;
+    case 'M':
+      switch(value){
+        case 1:
+          moveForward(motorSpeed);
+          break;
+        case 0:
+          stopMotors();
+          break;
+      }
+      break;
+    case 'L':
+      switch(value){
+        case 1:
+          digitalWrite(LED_BUILTIN,0);
+          break;
+        case 0:
+          digitalWrite(LED_BUILTIN,1);
+          break;
+      }
+      break;
     //A Button
     case 'a':
       switch (value) {  //use switch statements if you aren't printing to Serial.

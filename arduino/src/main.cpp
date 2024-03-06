@@ -23,18 +23,18 @@
 
   https://www.arduino.cc/en/Tutorial/BuiltInExamples/Blink
 */
-#define LED_BUILTIN 2
 // the setup function runs once when you press reset or power the board
 #define buffS 2
 char buffer[buffS];
 
 bool isStoped = true;
 int motorSpeed = 100;
+
 void setup() {
   Serial.begin(115200);
   // initialize digital pin LED_BUILTIN as an output.
-  pinMode(LED_BUILTIN, OUTPUT);
   Serial.println("hello Serial!");
+  pinMode(LED_BUILTIN, OUTPUT);
   // Set the motor control pins as outputs
   pinMode(LEFT_MOTOR_PIN1, OUTPUT);
   pinMode(LEFT_MOTOR_PIN2, OUTPUT);
@@ -44,6 +44,14 @@ void setup() {
   // Set the motor speed control pins as outputs
   pinMode(LEFT_MOTOR_SPEED_PIN, OUTPUT);
   pinMode(RIGHT_MOTOR_SPEED_PIN, OUTPUT);
+  Serial.println("Wait RspPi!");
+  bool ledS = 1;
+  while(!Serial.available()){
+    digitalWrite(LED_BUILTIN, ledS);
+    Serial.print('.');
+    delay(500);
+    ledS = !ledS;
+  }
 }
 
 // the loop function runs over and over again forever
