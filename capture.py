@@ -73,6 +73,7 @@ i = 0
 print("Press START to start record!")
 while(not joy.Start): pass
 led_switch(1)
+motors_switch(1)
 print("Go!")
 time.sleep(0.5)
 print("Press Y to pause dataRecording")
@@ -83,12 +84,12 @@ while 1:
         if not isPaused:
             print("pause!")
             motors_switch(0)
-            time.sleep(0.1)
             led_switch(0)
             isPaused = True
         else:
             print("Start Recording!")
             led_switch(1)
+            motors_switch(1)
             isPaused = False
         while(joy.Y): pass
     if not isPaused:    

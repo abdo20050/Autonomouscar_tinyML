@@ -30,7 +30,8 @@ char buffer[buffS];
 bool isStoped = true;
 int motorSpeed = 100;
 
-void setup() {
+void setup()
+{
   Serial.begin(115200);
   // initialize digital pin LED_BUILTIN as an output.
   Serial.println("hello Serial!");
@@ -46,29 +47,38 @@ void setup() {
   pinMode(RIGHT_MOTOR_SPEED_PIN, OUTPUT);
   Serial.println("Wait RspPi!");
   bool ledS = 1;
-  while(!Serial.available()){
+  while (!Serial.available())
+  {
     digitalWrite(LED_BUILTIN, ledS);
     Serial.print('.');
     delay(500);
     ledS = !ledS;
   }
+  digitalWrite(LED_BUILTIN, 1);
 }
 
 // the loop function runs over and over again forever
-void loop() {
-  if(Serial.available()){
-    Serial.readBytes(buffer,buffS);
-    Serial.print(buffer[0]);
-    Serial.println(buffer[1], DEC);
-    useGameData(buffer[0],(int)buffer[1]);
-    while(Serial.available()){
-      Serial.read();
+void loop()
+{
+  if (Serial.available())
+  {
+    char InputType, InputValue;
+    Serial.readBytes(buffer, buffS);
+    InputType = buffer[0];
+    if (isalpha(InputType))
+    {
+      InputValue = buffer[1];
+      Serial.print(InputType);
+      Serial.println(InputValue,DEC);
+      useGameData(InputType, (int)InputValue);
     }
   }
-  delay(10);
+  // delay(10);
   // Serial.println("ummm");
   // digitalWrite(LED_BUILTIN, HIGH);  // turn the LED on (HIGH is the voltage level)
   // delay(1000);                      // wait for a second
   // digitalWrite(LED_BUILTIN, LOW);   // turn the LED off by making the voltage LOW
   // delay(1000);                      // wait for a second
+endloop:
+  void pass();
 }
