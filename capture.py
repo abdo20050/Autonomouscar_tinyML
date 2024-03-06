@@ -96,7 +96,7 @@ while 1:
         img_name = str(statesCount[state]-1)
         img_name = img_name.zfill(len(img_name)+1)
         directory = f"./dataset/{state}/{img_name}.jpg"
-        # metadata = picam2.capture_file(directory)
+        metadata = picam2.capture_file(directory)
         # print(metadata)
         i = i+1
 # print(f"fps[{i/5}]")
