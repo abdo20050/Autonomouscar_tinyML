@@ -95,7 +95,7 @@ while 1:
     if not isPaused:    
         state = getState()
         img_name = str(statesCount[state]-1)
-        img_name = img_name.zfill(len(img_name)+1)
+        img_name = state+img_name.zfill(len(img_name)+1)
         directory = f"./dataset/{state}/{img_name}.jpg"
         metadata = picam2.capture_file(directory)
         # print(metadata)
