@@ -71,7 +71,7 @@ def exit_handler():
     resetArduion()
     picam2.close()
     convert_images_to_video(vid_dir+'/Tmp',vid_name,fps)
-    # shutil.rmtree(vid_dir+'/Tmp')
+    shutil.rmtree(vid_dir+'/Tmp')
 
 atexit.register(exit_handler)
 
@@ -116,9 +116,10 @@ while True:
         out = inference_img(im)
         id = np.argmax(out)
         pred = labels[id]
+        conf = out[0][id]
         real = getState()
         print(pred)
-        cv2.putText(im,f"Prediction: {pred}",org = (10,30),fontFace= cv2.FONT_HERSHEY_SIMPLEX,fontScale = 1 , color=(0,0,255),thickness=2)
+        cv2.putText(im,f"Prediction: {pred}, confidence: {round(conf*100,1)}%",org = (10,30),fontFace= cv2.FONT_HERSHEY_SIMPLEX,fontScale = 1 , color=(0,0,255),thickness=2)
         cv2.putText(im,f"real: {real}",org = (10,60),fontFace= cv2.FONT_HERSHEY_SIMPLEX,fontScale = 1 , color=(0,0,255),thickness=2)
         img_name = str(i)
         cv2.imwrite(vid_dir+f"/Tmp/{img_name}.jpg",im)

@@ -45,15 +45,15 @@ class XboxController(object):
 
     def read(self): # return the buttons/triggers that you care about in this methode
         # events = get_gamepad()
-        if self.eventOn:
-            x = self.LeftDPad
-            y = self.RightDPad
-            z = self.UpDPad
-            e = self.DownDPad
-            a = self.A
-            rt = self.RightTrigger
-            rb = self.RightBumper
-            return [x, y, z, e, a, rt, rb]
+        # if self.eventOn:
+        x = self.LeftDPad
+        y = self.RightDPad
+        z = self.UpDPad
+        e = self.DownDPad
+        a = self.A
+        rt = self.RightTrigger
+        rb = self.RightBumper
+        return [x, y, z, e, a, rt, rb]
 
 
     def _monitor_controller(self):
